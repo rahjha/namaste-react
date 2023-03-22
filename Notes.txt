@@ -2,3 +2,9 @@
 2. What is crossorigin tag in cdn link?
 3. whats the difference between development React CDN and production React CDN?
 4. Read about git and github, both are differenet.
+5. Read about different types of dependencies in npm package, dev dependency and normal dependency
+6. Read about ^(caret) and ~(tilde) in package.json file dependencies
+[https://www.geeksforgeeks.org/difference-between-tilde-and-caret-in-package-json/]
+7. read more about node_modules, package.json, package-lock.json
+8. read about Parcel? How powerful Parcel is?
+9. read about browserlist package
