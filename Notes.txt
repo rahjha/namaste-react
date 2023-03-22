@@ -1,3 +1,4 @@
 1. Research what is CDN?
 2. What is crossorigin tag in cdn link?
 3. whats the difference between development React CDN and production React CDN?
+4. Read about git and github, both are differenet.
