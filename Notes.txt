@@ -8,3 +8,12 @@
 7. read more about node_modules, package.json, package-lock.json
 8. read about Parcel? How powerful Parcel is?
 9. read about browserlist package
+
+10. A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
+
+11. Babel converts the newer code to old format code for old browsers.
+12. read about babel-plugin-transform-remove-console to remove the console logs in the production build
+
+13. what is the difference between html and JSX?
+
+14. what are different usage of JSX? - read more about JSX and Babel.
