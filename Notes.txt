@@ -17,3 +17,21 @@
 13. what is the difference between html and JSX?
 
 14. what are different usage of JSX? - read more about JSX and Babel.
+
+15. Read about Join items in array in JavaScript.
+
+16. Read about Optional chaining. - JavaScript concept
+
+17. Read about destructuring in JavaScript.
+
+18. Read about spread operator in JavaScript.
+
+19. Read about Map, reduce and filter.
+
+20. Read about virtual DOM, reconcilliation diff algorithm
+
+21. Read about need of key="unique identifier" in React.
+
+22. Read about React fiber in React 16. - new reconcilliation engine which is responsible for diff.
+
+23. Why don't we use index as a key in React while there are multiple element of same type and react complaints for key - We never use index as a key.
