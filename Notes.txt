@@ -35,3 +35,5 @@
 22. Read about React fiber in React 16. - new reconcilliation engine which is responsible for diff.
 
 23. Why don't we use index as a key in React while there are multiple element of same type and react complaints for key - We never use index as a key.
+
+24. Read about events in JavaScript

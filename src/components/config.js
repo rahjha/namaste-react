@@ -1,13 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const heading = (
-  <h1 id="title" key="h1">
-    Food Villa
-  </h1>
-);
-
-const restrauntList = [
+export const restrauntList = [
   {
     type: "restaurant",
     info: {
@@ -1912,73 +1903,3 @@ const restrauntList = [
     ],
   },
 ];
-
-const Title = () => {
-  return (
-    <a href="/">
-      <img
-        className="logo"
-        alt="logo"
-        src="https://yt3.googleusercontent.com/ytc/AL5GRJXudT76175T4x4n7eslWM1YkgNLHDSSqfXGoadl=s900-c-k-c0x00ffffff-no-rj"
-      />
-    </a>
-  );
-};
-
-const HeaderComponent = () => {
-  return (
-    <div className="header">
-      <Title />
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const ResturantCard = (props) => {
-  return (
-    <div className="card">
-      <img alt="Cuisine Logo" src={props.info.image.url} />
-      <h2>{props.info.name}</h2>
-      <h3>{props.info.cuisine[0].name}</h3>
-      <h4>{props.info.rating.rating_text}</h4>
-    </div>
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="resturant-list">
-      {restrauntList.map((resturant) => {
-        return <ResturantCard {...resturant} key={resturant.info.resId} />;
-      })}
-    </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <div className="footer">
-      <h4>Copywright code2elevate</h4>
-    </div>
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <>
-      <HeaderComponent />
-      <Body />
-      <Footer />
-    </>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
