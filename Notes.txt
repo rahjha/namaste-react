@@ -37,3 +37,19 @@
 23. Why don't we use index as a key in React while there are multiple element of same type and react complaints for key - We never use index as a key.
 
 24. Read about events in JavaScript
+
+25. Read about fetch in JavaScript
+
+26. Read about callback function in JavaScript
+
+27. Read about Optional chaining in JavaScript
+
+28. Read about how to do error handling inside Functional components useEffect
+
+29. Read about Shimmer effect in UI
+
+30. Read the difference between JavaScript expression and JavaScript statement
+
+31. Read about CORS.
+
+32. Learn how to handle errors in React

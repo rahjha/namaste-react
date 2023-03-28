@@ -1,10 +1,12 @@
+import { CDN_URL } from "./config";
+
 const ResturantCard = (props) => {
   return (
     <div className="card">
-      <img alt="Cuisine Logo" src={props.info.image.url} />
-      <h2>{props.info.name}</h2>
-      <h3>{props.info.cuisine[0].name}</h3>
-      <h4>{props.info.rating.rating_text} *</h4>
+      <img alt="Cuisine Logo" src={CDN_URL + props.data.cloudinaryImageId} />
+      <h2>{props.data.name}</h2>
+      <h3>{props.data.cuisines.join(", ")}</h3>
+      <h4>{props.data.costForTwoString}</h4>
     </div>
   );
 };
