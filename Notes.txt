@@ -53,3 +53,13 @@
 31. Read about CORS.
 
 32. Learn how to handle errors in React
+
+33. Read about why CDN's are best places to host images and use that in your app.
+
+34. Read about Server side routing and Client side routing.
+
+35. Read about Link tag.
+
+36. Read about react-router-DOM
+
+37. Read about useRouteError hook
