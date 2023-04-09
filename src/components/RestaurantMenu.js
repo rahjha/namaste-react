@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CDN_URL } from "./config";
+import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
   //how to read a dynamic url params
   const { id } = useParams();
-  const [restaurantMenu, setRestaurantMenu] = useState([]);
+  const [restaurantMenu, setRestaurantMenu] = useState(null);
   const [restaurantInfo, setRestaurantInfo] = useState({});
 
   useEffect(() => {
@@ -22,10 +23,6 @@ const RestaurantMenu = () => {
     setRestaurantMenu(
       json.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card
         .card.itemCards
-    );
-    console.log(
-      json.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card
-        .card
     );
   }
 

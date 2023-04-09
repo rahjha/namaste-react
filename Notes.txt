@@ -63,3 +63,8 @@
 36. Read about react-router-DOM
 
 37. Read about useRouteError hook
+
+38. Read about class based component , use of super(props) inside constructor
+
+39. We can make the componentDidMount function async, but we cannot make the function called inside useEffect hook as async, why?
+
