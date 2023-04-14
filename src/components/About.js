@@ -22,7 +22,7 @@ class About extends React.Component {
         <p>
           This is the Namaste React live course episode 06 - Finding the path 🚀
         </p>
-
+        <ProfileClass name={"First Child"} />
         <Profile />
       </div>
     );
