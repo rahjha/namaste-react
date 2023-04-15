@@ -73,3 +73,7 @@
 41. Read about Suspense and fallback
 
 42. Read about tailwind.config.js file
+
+43. Explore about Profiler and components from React Dev tools
+
+44. Can one Context come inside another Context? read about it.

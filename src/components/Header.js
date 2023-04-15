@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/foodVilla.png";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 
 const loggedInUser = () => {
   //API call to check if the user is logged in or not
@@ -19,6 +20,7 @@ const Title = () => {
 };
 
 const HeaderComponent = () => {
+  const { user } = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   return (
@@ -42,6 +44,7 @@ const HeaderComponent = () => {
         </ul>
       </div>
       <h1 className="py-8">{isOnline ? "🟢" : "🔴"}</h1>
+      <span className="py-8 text-red-900 font-bold">{user.name}</span>
       <div>
         {isLoggedIn ? (
           <button
