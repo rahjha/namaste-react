@@ -68,3 +68,8 @@
 
 39. We can make the componentDidMount function async, but we cannot make the function called inside useEffect hook as async, why?
 
+40. Read about Lazy loading/ Code Splitting
+
+41. Read about Suspense and fallback
+
+42. Read about tailwind.config.js file

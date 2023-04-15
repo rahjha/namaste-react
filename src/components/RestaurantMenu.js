@@ -27,9 +27,9 @@ const RestaurantMenu = () => {
   }
 
   return (
-    <div className="menu">
-      <div>
-        <h2>{restaurantInfo.name}</h2>
+    <div className="flex">
+      <div className="pl-2">
+        <h2 className="font-bold text-xl">{restaurantInfo.name}</h2>
         <img
           alt="Cuisine Logo"
           src={CDN_URL + restaurantInfo.cloudinaryImageId}
@@ -39,8 +39,8 @@ const RestaurantMenu = () => {
         <h3>{restaurantInfo.avgRating}</h3>
         <h3>{restaurantInfo.costForTwoMessage}</h3>
       </div>
-      <div>
-        <h2>Menu</h2>
+      <div className="pl-10">
+        <h2 className="font-bold text-xl">Menu</h2>
         <ul>
           {restaurantMenu?.map((menu) => (
             <li key={menu?.card?.info?.id}>{menu?.card?.info?.name}</li>

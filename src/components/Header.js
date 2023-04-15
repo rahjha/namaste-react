@@ -13,7 +13,7 @@ const loggedInUser = () => {
 const Title = () => {
   return (
     <Link to="/">
-      <img className="logo" alt="logo" src={Logo} />
+      <img className="h-24" alt="logo" src={Logo} />
     </Link>
   );
 };
@@ -22,33 +22,39 @@ const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   return (
-    <div className="header">
+    <div className="flex justify-between bg-pink-50 shadow-lg">
       <Title />
       <div className="nav-items">
-        <ul>
+        <ul className="flex py-10">
           <Link to="/">
-            <li className="nav-ul-li">Home</li>
+            <li className="px-2 font-bold">Home</li>
           </Link>
           <Link to="/about">
-            <li className="nav-ul-li">About</li>
+            <li className="px-2 font-bold">About</li>
           </Link>
           <Link to="/contact">
-            <li className="nav-ul-li">Contact</li>
+            <li className="px-2 font-bold">Contact</li>
           </Link>
-          <li className="nav-ul-li">Cart</li>
+          <li className="px-2 font-bold">Cart</li>
           <Link to="/instamart">
-            <li className="nav-ul-li">Instamart</li>
+            <li className="px-2 font-bold">Instamart</li>
           </Link>
         </ul>
       </div>
-      <h1>{isOnline ? "🟢" : "🔴"}</h1>
+      <h1 className="py-8">{isOnline ? "🟢" : "🔴"}</h1>
       <div>
         {isLoggedIn ? (
-          <button className="login-logout" onClick={() => setIsLoggedIn(false)}>
+          <button
+            className="bg-purple-800 m-5 px-3 py-1 rounded-md text-white"
+            onClick={() => setIsLoggedIn(false)}
+          >
             Logout
           </button>
         ) : (
-          <button className="login-logout" onClick={() => setIsLoggedIn(true)}>
+          <button
+            className="bg-purple-800 m-5 px-3 py-1 rounded-md text-white"
+            onClick={() => setIsLoggedIn(true)}
+          >
             Login
           </button>
         )}
