@@ -12,7 +12,9 @@ import ProfileClass from "./components/ProfileClass";
 import Shimmer from "./components/Shimmer";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import UserContext from "./utils/UserContext";
-
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 //React Element
 const heading = (
   <h1 id="title" key="h1">
@@ -31,16 +33,18 @@ const AppLayout = () => {
   });
 
   return (
-    <UserContext.Provider
-      value={{
-        user: user,
-        setUser: setUser,
-      }}
-    >
-      <HeaderComponent />
-      <Outlet />
-      <Footer />
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
+        <HeaderComponent />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -83,6 +87,10 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { addItem } from "../utils/cartSlice";
 import { CDN_URL } from "./config";
 import Shimmer from "./Shimmer";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   //how to read a dynamic url params
@@ -25,6 +27,10 @@ const RestaurantMenu = () => {
         .card.itemCards
     );
   }
+  const dispatch = useDispatch();
+  const addFoodItem = (menu) => {
+    dispatch(addItem(menu));
+  };
 
   return (
     <div className="flex">
@@ -43,7 +49,15 @@ const RestaurantMenu = () => {
         <h2 className="font-bold text-xl">Menu</h2>
         <ul>
           {restaurantMenu?.map((menu) => (
-            <li key={menu?.card?.info?.id}>{menu?.card?.info?.name}</li>
+            <li key={menu?.card?.info?.id}>
+              {menu?.card?.info?.name}
+              <button
+                className="p-1 m-2 bg-red-200"
+                onClick={() => addFoodItem(menu?.card?.info)}
+              >
+                Add
+              </button>
+            </li>
           ))}
         </ul>
       </div>
