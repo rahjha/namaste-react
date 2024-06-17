@@ -1,4 +1,4 @@
-to connect the local repo to remote repo, we have two ways
+To connect the local repo to remote repo, we have two ways
 
 SSH way, create a key and add it to the github
 
@@ -88,3 +88,108 @@ npm parcel build index.html
 
 _____________________________________________________________________
 
+Facebook developers created JSX to remove the complexity of creating element in React.
+
+JSX is not html in javascript, JSX is a html or XML like syntax.
+
+if JS engine does not understand JSX code, then how is it executed?
+
+ - Before reaching to JS engine, JSX code is transpiled to JS code, and then it is understood by JS engine.
+ 
+ - This transpiling of JSX is done by Parcel, but Parcel does not do it on its own, it delegates this responsibility to BABEL.
+ - BABEL is a dependency of parcel, when we installed Parcel, we already got BABEL.
+ 
+ - BABEL library is not created by facebook developers.
+ 
+ - JSX code is converted to nothing but React.createElement()
+ 
+ - JSX => React.createElement() => JS Object => HtmlElement(after render)
+ 
+ - ** for giving attributes inside JSX - always use camelCase
+ - for giving class in JSX attribute name is class and inside JSX it is className.
+ 
+ - For writing multiple line JSX we wrap it inside small brackets()
+_____________________________________________________________________
+
+React Components :
+
+There are two types of component in react.
+
+1. Class based component - old way of writing code, nobody uses it now
+2. Functional component - new way of writing code
+
+Class based uses javascript classes whereas functional component uses javascript functions.
+
+_____________________________________________________________________
+
+React functional component :
+ 
+ -it is just a normal javascript function.
+ 
+ - a javascript function that returns a JSX code/react element is a react functional component
+ 
+ -for creating a functional component always name it with capital letter
+ 
+ const HeadingComponent = () =>(
+	return <h1>Namaste React functional component</h1>
+ )
+ 
+how to render a functional component?
+
+root.render(<HeadingComponent />);
+
+_____________________________________________________________________
+
+What is component composition ? Component inside another component
+
+-> We can put one component another function component using <ComponentName /> 
+
+const Title = () =>(
+	<h1>Namaste react</h1>
+)
+
+const HeadingComponent = () =>(
+	<div>
+		<Title />
+		<h1>Namaste React functional component</h1>
+	</div>
+ )
+ 
+_____________________________________________________________________
+
+How to write javascript inside functional component?
+
+-> we write javascript inside functional component using curly braces{}
+
+const num = 1000;
+const HeadingComponent = () =>(
+	<div>
+		{num}
+		{console.log("writing javascript inside functional component")}
+		<h1>Namaste React functional component</h1>
+	</div>
+ )
+ 
+_____________________________________________________________________
+
+How to put react element inside functional component?
+
+-> react element is nothing but normal javascript variable and we know that using curly braces{} we can write javascript inside functional component.
+	hence we can put react element inside functional component using curly braces {}.
+
+const title = <h1>Namaste React</h1>
+
+const Heading = () =>(
+	<div>
+		{title}
+		<h1>Inside function component</h1>
+	</div>
+)
+
+_____________________________________________________________________
+
+How to put one react element inside another react element?
+
+-> We can acheive it using curly braces {}.
+
+_____________________________________________________________________
