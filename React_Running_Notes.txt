@@ -225,3 +225,34 @@ Map function has index as the second argument which can be used as key therorati
 If there is no unique key to use as key, then you can use Index as the last resort, it is better to use Index instead of not passing any key.
 _____________________________________________________________________
 
+There are two types of import and export
+
+1. Default export
+2. named export
+
+There can be only one default export from a file, but in case you need to export multiple things from a file, then we can go for named export. There can be a combination of
+one default export and multiple named export also.
+
+eg. 
+export const CDN_URL = "";
+export const IMAGE_URL = "";
+
+Importing of a named export :
+
+to import named exports we have to write inside a curly brace {}
+
+import {CDN_URL} from "./abcd";
+_____________________________________________________________________
+
+***
+Whenever a state variable changes, React re-renders the component.
+
+Reconcilliation algorithm/React Fibre
+
+Virtual DOM is representation of actual DOM, also virtual DOM is javascript object
+
+Diff Algorithm :
+
+Whenever there is any change in any state variable then it finds out the difference between old virtual DOM and new virtual DOM.
+and whatever differences are found, the DOM is rendered to update the difference.
+
