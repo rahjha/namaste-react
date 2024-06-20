@@ -193,3 +193,35 @@ How to put one react element inside another react element?
 -> We can acheive it using curly braces {}.
 
 _____________________________________________________________________
+
+***Props
+
+props is the mechanism to dynamically pass data to functional component
+
+passing a prop to a functional component is like passing argument to a function.
+
+_____________________________________________________________________
+
+Config driven UI :
+
+UI which is driven by data in the backend is called config driven UI.
+for example inside swiggy app, there is different offers running for different cities, so all the offers are data driven inside the UI.
+
+_____________________________________________________________________
+
+**
+Why unique key is required when we are rendering multiple times a same component using map or loop functionality?
+
+- Taking the example of multiple Restaurant cards inside Restaurant container, suppose we have no unique id, and there are 50 Restaurant cards in the container,
+and a new Restaurant card is added, then React does not know that which Restaurant card is new and it renders all the 51 Restaurant cards, where in if you put unique key,
+then React will exactly know which is the new Restaurant card, and it will only render the new Restaurant card.
+
+This is a major performance point in React.
+
+
+React don’t recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state.
+Map function has index as the second argument which can be used as key theroratically, but React suggest not to use index as key.
+
+If there is no unique key to use as key, then you can use Index as the last resort, it is better to use Index instead of not passing any key.
+_____________________________________________________________________
+
