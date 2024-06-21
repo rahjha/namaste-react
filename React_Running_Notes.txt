@@ -256,3 +256,5 @@ Diff Algorithm :
 Whenever there is any change in any state variable then it finds out the difference between old virtual DOM and new virtual DOM.
 and whatever differences are found, the DOM is rendered to update the difference.
 
+_____________________________________________________________________
+

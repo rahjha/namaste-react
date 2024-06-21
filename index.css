@@ -28,7 +28,7 @@
 }
 
 .res-card{
-    width: 220px;
+    width: 200px;
     margin: 30px;
     padding: 5px;
 }
@@ -39,14 +39,38 @@
 .res-logo{
     width: 100%;
 }
+.cuisine{
+    overflow-wrap:break-word;
+}
 .res-container{
     display: flex;
     flex-wrap: wrap;
 }
 .filter{
     margin: 10px;
+    display: flex;
 }
 
 .filter-btn{
     cursor: pointer;
+}
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer{
+    width: 200px;
+    height: 300px;
+    background-color: #f0f0f0;
+    margin: 10px;
+}
+
+.login{
+    margin: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.search-box{
+    margin-left: 20px;
 }
