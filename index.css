@@ -23,6 +23,11 @@
     margin: 10px;
 }
 
+.link{
+    text-decoration: none;
+    margin: 10px;
+}
+
 .search{
     margin: 5px;
 }
@@ -73,4 +78,8 @@
 }
 .search-box{
     margin-left: 20px;
+}
+
+.restaurantCard{
+    text-decoration: none;
 }
