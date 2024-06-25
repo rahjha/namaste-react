@@ -258,3 +258,302 @@ and whatever differences are found, the DOM is rendered to update the difference
 
 _____________________________________________________________________
 
+Class Based components :
+
+What is a class based component?
+
+-> Like we said functional components are nothing but normal javascript function, similar way class based components are nothing but normal javascript class.
+
+for creating a class based component create a javascript class which should extend React.Component class
+
+and then override the render method and return some JSX from the render method which will be rendered on the DOM.
+
+class UserClass extends React.Component{
+
+	render(){
+		return(
+			<div>
+				<Rendering the JSX on the DOM>
+			</div>
+		)
+	}
+}
+_____________________________________________________________________
+
+How the props are received inside a class based component?
+
+-> to receive props inside a class based component, we have define a constructor with the argument props, and fromt the constructor call the super(props), it is mandatory.
+
+Now this props holds all the props passed to this class based component and to use this props use this keyword as the props are associated to the class.(eg. this.props.name)
+
+class UserClass extends React.Component{
+
+	constructor(props){
+		super(props)
+	}
+
+	render(){
+		return(
+			<div>
+				<Rendering the JSX on the DOM>
+				{this.props.name}
+			</div>
+		)
+	}
+}
+_____________________________________________________________________
+
+How to create state/local variables inside a class based component?
+
+-> Inside the class we have a predefiend state given to us which is a big object and we define all our state/local variables inside the big object state.
+	and to access the state variables, we use this keyword (this.state.count)
+
+import React from "react";
+
+class UserClass extends React.Component{
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            count: 0,
+            count2: 2,
+        };
+    }
+
+    render(){
+        const {name, location} = this.props;
+        const {count, count2} = this.state;
+        return(
+            <div className="user-card">
+                <h2>count : {count}</h2>
+                <h2>count2 : {count2}</h2>
+                <h2>Name : {name}</h2>
+                <h3>Location : {location}</h3>
+                <h4>Contact : @rahjha</h4>
+            </div>
+        )
+    }
+}
+
+export default UserClass;
+
+_____________________________________________________________________
+
+How to update the state variables?
+
+-> Recat gives you access to an important function this.setState({object}), and the object contains the updated value of the variable.
+	
+Never update state variables directly by using assignment(=) operator in class based components.
+
+import React from "react";
+
+class UserClass extends React.Component{
+
+    constructor(props){
+        super(props)
+
+        this.state = {
+            count: 0,
+            count2: 2,
+        };
+    }
+
+    render(){
+        const {name, location} = this.props;
+        const {count, count2} = this.state;
+        return(
+            <div className="user-card">
+                <h2>count : {count}</h2>
+                <h2>count2 : {count2}</h2>
+                <button onClick={()=>{
+                    this.setState({
+                        count: this.state.count+1,
+                        count2: this.state.count2+1
+                    })
+                }}>Increase count</button>
+                <h2>Name : {name}</h2>
+                <h3>Location : {location}</h3>
+                <h4>Contact : @rahjha</h4>
+            </div>
+        )
+    }
+}
+
+export default UserClass;
+
+_____________________________________________________________________
+
+Life cycle of class based component :
+
+-> React class based component has one more method named componentDidMount, which is basically called after the constructor and render() method, so once we render the component
+then we want to make an API call to fetch the data and re-render the component, it can be acheived using componentDidMount() method. Hence componentDidMount() method is used
+to call API's.
+
+Below is the life cycle sequence for class based component :
+
+constructor
+render()
+componentDidMount()
+
+1. What is the life cycle sequence when a parent class based component calls a child class based component?
+
+->  parent constructor
+	parent render()
+	child constructor
+	child render()
+	child componentDidMount()
+	parent componentDidMount()
+	
+2. What is the life cycle sequence when a parent class based component calls two child class based component?
+
+->  parent constructor
+	parent render()
+	
+		child-1 constructor
+		child-1 render()
+		
+		child-2 constructor
+		child-2 render()
+		
+		child-1 componentDidMount()
+		child-2 componentDidMount()
+	parent componentDidMount()
+	
+this happens because of optimization done by react, it batches the render phase of both the childs first and then it calls the componentDidMount.
+because render phase is where the DOM update happens and DOM update is a very costly operation, hence updating DOM every single time for each component is not good,
+hence React batches the rendering phase of multiple child components.
+_____________________________________________________________________
+
+--MOUNTING PHASE--
+
+-Constructor (with dummy data)
+-Render (with dummy data)
+	<HTML dummy>
+	
+-Component Did Mount
+	<API call>
+	<this.setState> -> state variables are updated
+	
+--UPDATE PHASE--
+	render(it is triggered because state variable is updated with API call data)
+	
+	componentDidUpdate -> It is called after each render
+	
+	componentWillUnmount -> it is called once we move to another component(e.g moving from About component to Contact component, used for doing clean before moving to another component)
+	
+_____________________________________________________________________
+
+***NEVER COMPARE CLASS BASED COMPONENT LIFE CYCLE METHODS TO FUNCTIONAL COMPONENT!!
+
+Use case of componentWillUnmount :
+
+We know that React apps are SPA (single page application), which means when we move from one page to another page then the whole application does not refresh instead only
+component changes from one to another. hence if we have put some conditions like printing something after an interval inside one component and we move to another component,
+then instead of closing that printing after interval it continues to do it. which is a very bad programming and wastes CPU resource. Hence to encounter this we have got
+componentWillUnmount() method which will be called once we move from one component to another component.
+
+
+import React from "react";
+
+class UserClass extends React.Component{
+
+    constructor(props){
+        super(props)
+        console.log("child-1 constructor");
+        this.state = {
+            count: 0,
+            count2: 2,
+            userInfo :{
+                name: "dummy",
+                location: "dummy"
+            }
+        };
+    }
+
+    async componentDidMount(){
+
+        this.timer = setInterval(()=>{
+            console.log("NAMASTE REACT OP");
+        },1000);
+
+        console.log("child-1 componentDidMount");
+
+        const data = await fetch("https://api.github.com/users/rahjha");
+        const json = await data.json();
+        console.log(json);
+
+        this.setState({
+            userInfo: json
+        })
+        console.log(this.state.userInfo);
+    }
+
+    componentDidUpdate(){
+        console.log("componentDidUpdate");
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timer);
+        console.log("componentWillUnmount");
+    }
+
+    render(){
+
+        const {name, location, avatar_url} = this.state.userInfo;
+        console.log("child-1 render");
+        return(
+            <div className="user-card">
+                <h2>count : {this.state.count}</h2>
+                <h2>count2 : {this.state.count2}</h2>
+                <button onClick={()=>{
+                    this.setState({
+                        count: this.state.count+1,
+                        count2: this.state.count2+1
+                    })
+                }}>Increase count</button><p/>
+                <img src={avatar_url} />
+                <h2>Name : {name}</h2>
+                <h3>Location : {location}</h3>
+                <h4>Contact : @rahjha</h4>
+            </div>
+        )
+    }
+}
+
+export default UserClass;
+
+_____________________________________________________________________
+
+****
+How to we implement componentWillUnmount feature inside functional component?
+
+-> we have a return method inside useEffect hook, which will be called when we move from one component to another, we can write the clean up code there inside the return method.
+
+import { useEffect } from "react";
+
+const User = (props) => {
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            console.log("NAMASTE REACT OP");
+        }, 1000);
+
+        return () =>{
+            clearInterval(timer);
+        }
+    },[])
+
+    const {name, location} = props;
+    return(
+        <div className="user-card">
+            <h2>Name : {name}</h2>
+            <h3>Location : {location}</h3>
+            <h4>Contact : @rahjha</h4>
+        </div>
+    )
+}
+export default User;
+
+_____________________________________________________________________
+

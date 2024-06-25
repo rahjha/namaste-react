@@ -80,6 +80,8 @@
     margin-left: 20px;
 }
 
-.restaurantCard{
-    text-decoration: none;
+.user-card {
+    border: 1px solid black;
+    margin-top: 10px;
+    padding: 20px;
 }
