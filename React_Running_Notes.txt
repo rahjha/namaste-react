@@ -557,3 +557,41 @@ export default User;
 
 _____________________________________________________________________
 
+Optimizing our App :
+
+//Chunking
+//Code splitting
+//Dynamic bunding
+//lazy loading
+//on demand loading
+
+Lets take an example of MakeMyTrip website, this website has many components like Flight ticket, Bus ticket, train ticket, hotel booking and many more.
+Now when we open the website, user is mostly interested in exploring any one of the sections like flight booking or hotel booking, but as of now what we have seen is
+React bundles our all code and creates on .js file for production where all the code is present. But in such cases where the App is too big like MakeMyTrip, this approach is
+totally wrong, whats the need of loading Train or bus booking section when the user is only interested in Flight booking, hence we have to do Chunking/Code splitting/Dynamic loading/
+lazy loading/ on demand loading inside of app.
+
+e.g in our app, we have built as Grocery section and we don't want to load Grocery section as soon as our App is launched.
+we do it with the help of lazy (named import from react), instead of importing the component directly, we use lazy to import it, lazy takes a callback function.
+
+-> const Grocery = lazy(()=>import("./components/Grocery"));
+
+so now your Grocery component will not be loaded when your app is launced for first time. But there is one problem as the Grocery code is not loaded and as soon as you try to
+go on the Grocery section you will see error as Grocery code is still not loaded for us, so what happens is, as soon as we click on Grocery section, the code is loaded but it
+takes some milliseconds of time to load the code and meanwhile it fails to load the component as code is not present yet. Hence what we do it we use Suspense which is also 
+imported from react, Suspense take a fallback method, where we can mention to fallback on something (like <Shimmer />) untill our Grocery code is loaded, so now instead of
+throwing error, it falls back on the code mention inside <Suspense fallback={<h1>Loading.....</h1>}><Grocery /></ Suspense>
+
+
+	//lazy loading
+	const Grocery = lazy(()=>import("./components/Grocery"));
+
+	//Using <Suspense with fallback>
+      {
+        path : "/grocery",
+        element : <Suspense fallback={<h1>Loading....</h1>}><Grocery /></Suspense>
+      }
+	  
+_____________________________________________________________________
+
+

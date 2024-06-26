@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_GET_RESTAURANT_API } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () =>{
     const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -17,12 +18,23 @@ const Body = () =>{
         const data = await fetch(SWIGGY_GET_RESTAURANT_API);
         
         const json = await data.json();
-        
+        console.log("printing restaurantList :");
+        console.log(json);
         setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
-    return listOfRestaurant.length === 0 ? ( <Shimmer /> ):(
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus === false){
+        return(
+            <h1>
+                Looks like you are offline!! Please check your internet connection.
+            </h1>
+        );
+    }
+
+    return listOfRestaurant === null ? ( <Shimmer /> ):(
         <div className="body">
             <div className="filter">
                 <button className="filter-btn" onClick={()=>{
