@@ -567,7 +567,7 @@ Optimizing our App :
 
 Lets take an example of MakeMyTrip website, this website has many components like Flight ticket, Bus ticket, train ticket, hotel booking and many more.
 Now when we open the website, user is mostly interested in exploring any one of the sections like flight booking or hotel booking, but as of now what we have seen is
-React bundles our all code and creates on .js file for production where all the code is present. But in such cases where the App is too big like MakeMyTrip, this approach is
+React bundles our all code and creates one .js file for production where all the code is present. But in such cases where the App is too big like MakeMyTrip, this approach is
 totally wrong, whats the need of loading Train or bus booking section when the user is only interested in Flight booking, hence we have to do Chunking/Code splitting/Dynamic loading/
 lazy loading/ on demand loading inside of app.
 
