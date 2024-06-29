@@ -1,15 +1,19 @@
-import RestaurantCard from "./RestaurantCard";
-import restaurants from "../utils/mockData";
-import { useEffect, useState } from "react";
+import RestaurantCard,{vegRestaurantLabel} from "./RestaurantCard";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_GET_RESTAURANT_API } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () =>{
     const [listOfRestaurant, setListOfRestaurant] = useState([]);
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
+
+    const VegRestaurant = vegRestaurantLabel(RestaurantCard);
+    
+
     useEffect(()=>{
         fetchData()
     },[]);
@@ -18,8 +22,6 @@ const Body = () =>{
         const data = await fetch(SWIGGY_GET_RESTAURANT_API);
         
         const json = await data.json();
-        console.log("printing restaurantList :");
-        console.log(json);
         setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
@@ -33,7 +35,7 @@ const Body = () =>{
             </h1>
         );
     }
-
+    const {loggedInUser, setUserInfo} = useContext(UserContext);
     return listOfRestaurant === null ? ( <Shimmer /> ):(
         <div className="body">
             <div className="flex">
@@ -55,12 +57,25 @@ const Body = () =>{
                     Top Rated Restaurant
                 </button>
                 </div>
+                <div className="p-4 m-4 flex items-center">
+                    <label>UserName : </label>
+                    <input className="border border-black ml-2" 
+                            value={loggedInUser} 
+                            onChange={(e)=>setUserInfo(e.target.value)}
+                    />
+                </div>
             </div>
             <div className="flex flex-wrap">
                 {
                     filteredRestaurant.map(
                         (restaurant) => (
-                            <Link className="restaurantCard" key={restaurant.info.id} to={"/restaurants/"+restaurant.info.id}><RestaurantCard resData={restaurant} /></Link>
+                            <Link 
+                                key={restaurant.info.id} 
+                                to={"/restaurants/"+restaurant.info.id}
+                            >
+                                {restaurant.info.veg ? <VegRestaurant resData={restaurant}/> : <RestaurantCard resData={restaurant} />}
+                                
+                            </Link>
                         )
                     )
                 }

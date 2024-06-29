@@ -595,3 +595,87 @@ throwing error, it falls back on the code mention inside <Suspense fallback={<h1
 _____________________________________________________________________
 
 
+Higher order component ?
+
+-> It is a function that takes a component as input and returns a component as output.
+
+Higher order function works on an existing function and enhances it, and then returns the same function as output.
+
+e.g. in swiggy, you must have seen some restaurant which are promoted with a promoted tag on the card, while others don't have the promoted label on the card.
+hence the same card is passed to some higher order component and promoted label is put on it.
+
+_____________________________________________________________________
+
+Read about lifting the state up, what is controlled and uncontrolled component.
+
+_____________________________________________________________________
+
+Read about props drilling and problem with props drilling in react.
+
+Props drilling is not a good way of writing code, we may not need a prop inside on component but still we pass because we may need the props inside one level
+low hierarchy.
+
+Alos changes inside prop in one component re-renders multiple components.
+
+_____________________________________________________________________
+
+Context :
+
+React context is a way to manage state globally in case of multi level components hierarchy, passing of props from one component to further down stream components involves props
+drilling. props drilling is a very cumbersome process, so to avoid props drilling, we can declare a React context and put the state inside it which needs to be used by many
+other components.
+
+___________
+import { createContext } from "react";
+
+const UserContext = createContext({
+    loggedInUser : "Default User",
+});
+
+export default UserContext;
+___________
+Header.js
+
+    const data = useContext(UserContext);
+    console.log(data);
+	
+	<li className="ml-2">{data.loggedInUser}</li>
+___________
+
+Suppose you had some validation in your code and you have retrieved the correct user name, and now you want to override the default user with correct user.
+wrap all the pages inside UserContect.Provider
+
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(()=>{
+    //Make an API call and send userName
+    const data = {
+      name : "Rahul Jha"
+    }
+    setUserInfo(data.name);
+  },[])
+
+<UserContext.Provider value={{ loggedInUser : userInfo, setUserInfo }}>
+        <div className="app">
+            <Header />
+            <Outlet />
+        </div>
+      </UserContext.Provider>
+
+and now you can pass your own userInfo for loggedInUser instead of default user.
+
+and suppose you want to make changes in user inside the Body component and want that to reflect inside Header component, then you can pass the setter function setUserInfo also
+inside the UserContext.Provider, then get it inside Header component with the help of useContext hook and set the value using setter function.
+
+const {loggedInUser, setUserInfo} = useContext(UserContext);
+
+				<div className="p-4 m-4 flex items-center">
+                    <label>UserName : </label>
+                    <input className="border border-black ml-2" 
+                            value={loggedInUser} 
+                            onChange={(e)=>setUserInfo(e.target.value)}
+                    />
+                </div>
+
+_____________________________________________________________________
+
